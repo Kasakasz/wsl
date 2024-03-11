@@ -14,7 +14,7 @@ RUN mkdir -p /opt/sf
 RUN tar xJf sf-linux-x64.tar.xz -C /opt/sf --strip-components 1
 RUN ln -s /opt/sf/bin/sf /usr/bin/sf
 
-RUN useradd --create-home --shell $(which zsh) --groups wheel --password 'TBD' krg
+RUN useradd --create-home --shell $(which zsh) --groups wheel --password '$6$xyz$vVpe5cb9AP6pTO9KCbzGIgaZ1CFAxCGODy0Nmsrl2DwPEaQTbKh0XsQLAb6/afo3kisfnNPWUftZ08xPgZ/dW0' krg
 RUN sed -i -- 's/root/krg/g' /etc/sudoers
 
 USER krg
