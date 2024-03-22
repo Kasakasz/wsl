@@ -19,8 +19,8 @@ RUN sed -i -- 's/root/krg/g' /etc/sudoers
 
 USER krg
 WORKDIR /home/krg
-RUN git clone https://github.com/lechum2/.dotfiles.git
-WORKDIR /home/krg/.dotfiles
+RUN git clone https://github.com/Kasakasz/wsl.git
+WORKDIR /home/krg/wsl
 RUN stow neovim
 RUN stow zsh
 RUN stow git
@@ -34,6 +34,7 @@ RUN nvim --headless +q
 
 ENV SF_CONTAINER_MODE true
 ENV SFDX_CONTAINER_MODE true
+ENV SF_DISABLE_TELEMETRY true
 ENV SHELL /bin/zsh
 
 RUN sf autocomplete

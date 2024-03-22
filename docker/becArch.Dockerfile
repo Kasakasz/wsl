@@ -1,4 +1,5 @@
 FROM archlinux
+
 ENV HTTP_PROXY=http://becpx-forti.res.bec.dk:80
 ENV HTTPS_PROXY=http://becpx-forti.res.bec.dk:80
 ENV NO_PROXY=.bec.dk
@@ -8,6 +9,7 @@ RUN for cert in cert.*; do trust anchor "$cert"; done
 RUN pacman -Syu --noconfirm
 RUN pacman --noconfirm -S base-devel fzf git jq make neovim nodejs npm openssh ripgrep rustup ruby sl stow stylua sudo tree-sitter-cli wget which yazi zoxide
 RUN pacman --noconfirm -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions jdk17-openjdk tar unzip python-pip lynx
+
 
 RUN wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
 RUN mkdir -p /opt/sf
@@ -19,8 +21,8 @@ RUN sed -i -- 's/root/krg/g' /etc/sudoers
 
 USER krg
 WORKDIR /home/krg
-RUN git clone https://github.com/lechum2/.dotfiles.git
-WORKDIR /home/krg/.dotfiles
+RUN git clone https://github.com/Kasakasz/wsl.git
+WORKDIR /home/krg/wsl
 RUN stow neovim
 RUN stow zsh
 RUN stow git
@@ -34,3 +36,7 @@ RUN nvim --headless +q
 
 ENV SF_CONTAINER_MODE true
 ENV SFDX_CONTAINER_MODE true
+ENV SF_DISABLE_TELEMETRY true
+RUN sf autocomplete
+
+ENV SHELL /bin/zsh

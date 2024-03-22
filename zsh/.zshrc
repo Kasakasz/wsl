@@ -16,12 +16,15 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^S history-incremental-search-forward
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -40,13 +43,11 @@ autoload -Uz compinit
 compinit
 
 # Custom key binds
-bindkey '^[' history-beginning-search-backward
-bindkey '^;' history-beginning-search-forward
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
 
 # Salesforce cli autocomplete
 eval
 SF_AC_ZSH_SETUP_PATH=/home/krg/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 
 eval "$(zoxide init zsh)"
-eval 
-SF_AC_ZSH_SETUP_PATH=/home/krg/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
