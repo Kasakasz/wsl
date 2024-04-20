@@ -19,7 +19,8 @@ RUN git clone https://github.com/Kasakasz/wsl.git
 WORKDIR /home/kasakasz/wsl
 RUN stow neovim
 RUN stow zsh
-RUN stow .dotfiles
+WORKDIR /home/kasakasz
+RUN stow git
 RUN stow ranger
 WORKDIR /home/kasakasz
 RUN npm config set strict-ssl false
