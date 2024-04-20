@@ -1,0 +1,59 @@
+[user]
+	name = Krzysztof Gawlinski
+	email = k.gawlinski@hotmail.com
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[alias]
+	chekcout = checkout
+	config-fetch = config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+[pull]
+	rebase = true
+[merge]
+	tool = fugitive
+[mergetool "fugitive"]
+	cmd = nvim -c \"Gvdiffsplit!\" \"$MERGED\"
+[mergetool]
+	keepBackup = false
+[color]
+	ui = auto
+[credential]
+	helper = "!f() { /home/krg/.vscode-server/bin/019f4d1419fbc8219a181fab7892ebccf7ee29a2/node /tmp/vscode-remote-containers-f43c3238-cf30-4f1a-a67f-57293ad1f45f.js git-credential-helper $*; }; f"
+[alias]
+	dodej = add
+	dej = pull
+	wyciep = rm
+	szrajbnij = commit
+	haja = blame
+	ftoryciul = blame
+	inkszy = checkout
+	kamerlik = stash
+	tasza = stash
+	upa = stash pop
+	nazot = revert
+	gichnij = push
+	ciulnij = push -f
+	heftnij = merge
+	abszlag = merge --abort
+	niy = merge --abort
+	narychtuj = init
+	tukej = clone
+	dej2 = clone
+	asta = branch
+	loboc = show
+	glancuj = commit --amend
+	pierona = !git reset HEAD~1 --mixed
+	nahasiok = reset HEAD --hard
+	geszichta = log
+	gyszichta = log
+	gorolski = remote
+	rajch = remote -v
+	sztof = diff
+	szychta = !git add -A && git commit -av
+	# wydupc stare asty / delete merged
+	ordnung = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; git remote -v update -p"
+	naszteluj = config
+	kajtoje = grep
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
