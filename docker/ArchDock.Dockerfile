@@ -6,6 +6,7 @@ RUN pacman --noconfirm -S zsh zsh-completions zsh-syntax-highlighting zsh-autosu
 RUN pacman --noconfirm -S ruby ruby-rdoc gcc make
 RUN gem update --user-install
 RUN gem install jekyll --user-install
+RUN export PATH=$HOME/.local/share/gem/ruby/3.0.0/bin:$PATH
 
 RUN wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
 RUN mkdir -p /opt/sf
