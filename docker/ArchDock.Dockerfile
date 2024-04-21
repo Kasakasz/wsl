@@ -3,7 +3,9 @@ FROM archlinux
 RUN pacman -Syu --noconfirm
 RUN pacman --noconfirm -S base-devel fzf git jq make neovim nodejs npm openssh ripgrep rustup ruby sl stow stylua sudo tree-sitter-cli wget which yazi zoxide
 RUN pacman --noconfirm -S zsh zsh-completions zsh-syntax-highlighting zsh-autosuggestions jdk17-openjdk tar unzip python-pip lynx
-
+RUN pacman -S ruby ruby-rdoc gcc make
+RUN gem update --user-install
+RUN gem install jekyll --user-install
 
 RUN wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
 RUN mkdir -p /opt/sf
@@ -19,7 +21,6 @@ RUN git clone https://github.com/Kasakasz/wsl.git
 WORKDIR /home/kasakasz/wsl
 RUN stow neovim
 RUN stow zsh
-WORKDIR /home/kasakasz
 RUN stow git
 RUN stow ranger
 WORKDIR /home/kasakasz
