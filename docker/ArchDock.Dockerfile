@@ -12,7 +12,7 @@ RUN mkdir -p /opt/sf
 RUN tar xJf sf-linux-x64.tar.xz -C /opt/sf --strip-components 1
 RUN ln -s /opt/sf/bin/sf /usr/bin/sf
 
-RUN useradd --create-home --shell $(which zsh) --groups wheel --password '$6$becdoker$bXrBXRidq4R.EOk5jx0LWdpgmCmN7pg0REKpHS2M/KnPHlnc6SgMRpt38r4GnvE2bAUKgmKvF6LRwDCdPnU2x.' kasakasz
+RUN useradd --create-home --shell $(which zsh) --groups wheel --password '$2y$10$QaP8vQoQ6vgBFfTDlzMRYuFMhANtTnhPQ5BY3U.J9r7KzWi0jVlX2' kasakasz
 RUN sed -i -- 's/root/kasakasz/g' /etc/sudoers
 
 USER kasakasz
