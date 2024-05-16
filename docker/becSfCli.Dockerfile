@@ -14,6 +14,12 @@ RUN mkdir -p /opt/sf
 RUN tar xJf sf-linux-x64.tar.xz -C /opt/sf --strip-components 1
 RUN ln -s /opt/sf/bin/sf /usr/bin/sf
 
+ADD https://github.com/zsh-users/zsh-autosuggestions.git /usr/share/zsh/plugins/zsh-autosuggestions
+ADD https://github.com/zsh-users/zsh-syntax-highlighting.git /usr/share/zsh/plugins/zsh-syntax-highlighting
+RUN mkdir -p /usr/share/fzf
+RUN cp /usr/share/doc/fzf/examples/key-bindings.zsh /usr/share/fzf/key-bindings.zsh
+RUN cp /usr/share/doc/fzf/examples/completion.zsh /usr/share/fzf/completion.zsh
+
 RUN useradd --create-home --shell /bin/zsh -G sudo --password '$6$becdoker$bXrBXRidq4R.EOk5jx0LWdpgmCmN7pg0REKpHS2M/KnPHlnc6SgMRpt38r4GnvE2bAUKgmKvF6LRwDCdPnU2x.' krg
 RUN sed -i -- 's/root/krg/g' /etc/sudoers
 
