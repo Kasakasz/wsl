@@ -41,6 +41,15 @@ RUN sf autocomplete
 ENV DEBIAN_FRONTEND=dialog
 
 COPY --chown=krg:krg ./sfAuthFiles/* /home/krg/sfAuthFiles/
-FROM mcr.microsoft.com/powershell
-SHELL ["powershell"]
-CMD ["pwsh", "-File", "./restoreOrgs.ps1"]
+RUN chmod +x ./wsl/docker/restoreOrgs.sh
+RUN ./wsl/docker/restoreOrgs.sh
+
+COPY --chown=krg:krg --chmod=600 ./.ssh/id_ed25519 /home/krg/.ssh/id_ed25519
+COPY --chown=krg:krg --chmod=644 ./.ssh/id_ed25519.pub /home/krg/.ssh/id_ed25519.pub
+COPY --chown=krg:krg --chmod=644 ./.ssh/known_hosts /home/krg/.ssh/known_hosts
+RUN mkdir /home/krg/workspace
+COPY --chown=krg:krg ./workspace/ /home/krg/workspace/
+
+RUN git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/nykcore.git ./nyk-core
+RUN git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/nykelectriccarcalculator.git ./nyk-ecc
+RUN git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/scoutz-common.git ./scoutz-common
