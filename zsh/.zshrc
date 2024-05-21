@@ -23,9 +23,6 @@ bindkey -v
 bindkey ^R history-incremental-search-backward
 bindkey ^S history-incremental-search-forward
 
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
-
 export EDITOR='nvim'
 export VISUAL='nvim'
 

@@ -46,7 +46,6 @@ ENV SF_CONTAINER_MODE true
 ENV SFDX_CONTAINER_MODE true
 ENV SF_DISABLE_TELEMETRY true
 ENV SHELL /bin/zsh
-ENV FZF_DEFAULT_OPTS="--preview 'nvim {}'"
 
 RUN sf autocomplete
 ENV DEBIAN_FRONTEND=dialog
