@@ -4,7 +4,7 @@ return {
     dependencies = { { "nvim-lua/plenary.nvim" } },
     opts = {
         defaults = {
-            preview = false,
+            preview = true,
         },
     },
     keys = {
