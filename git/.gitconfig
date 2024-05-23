@@ -1,6 +1,6 @@
 [user]
 	name = Krzysztof Gawlinski
-	email = k.gawlinski@hotmail.com
+	email = krg@bec.com
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
