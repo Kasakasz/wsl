@@ -9,7 +9,7 @@ $scratchOrgs = $orgList | select -exp scratchOrgs | select -exp alias
 $aliasList += $scratchOrgs
 $nonScratchOrgs = $orgList | select -exp nonScratchOrgs | select -exp alias
 $aliasList += $nonScratchOrgs
-$path = '.\sfAuthFiles\'
+$path = '..\docker\sfAuthFiles\'
 if (!(test-path $path)) {
     md $path | Out-Null
 }
