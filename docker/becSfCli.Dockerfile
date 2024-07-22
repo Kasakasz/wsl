@@ -42,6 +42,9 @@ RUN npm config set strict-ssl false \
     && npm install --global yarn eslint prettier prettier-plugin-apex @prettier/plugin-xml npm-groovy-lint typescript \
     && /home/krg/.local/bin/yarn config set "strict-ssl" false
 
+RUN npm install -g jfrog-cli-v2-jf \
+    && jf completion zsh --install 
+
 ENV SF_CONTAINER_MODE true
 ENV SFDX_CONTAINER_MODE true
 ENV SF_DISABLE_TELEMETRY true
@@ -62,4 +65,7 @@ COPY --chown=krg:krg ./workspace/ /home/krg/workspace/
 
 RUN git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/nykcore.git ./nyk-core \
     && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/nykelectriccarcalculator.git ./nyk-ecc \
-    && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/scoutz-common.git ./scoutz-common
+    && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/scoutz-common.git ./scoutz-common \
+    && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/credit.git ./credit-tribe \
+    && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/scoutz-customer-ui.git ./scoutz-customer-ui \
+    && git clone ssh://git@bitbucket.intra.bec.dk:30050/cem/case-management.git ./case-managament

@@ -18,6 +18,7 @@ setopt share_history          # share command history data
 
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/krg/.jfrog/jfrog_zsh_completion
 
 bindkey -v
 bindkey ^R history-incremental-search-backward
@@ -42,6 +43,7 @@ compinit
 # Custom key binds
 bindkey '^p' history-beginning-search-backward
 bindkey '^n' history-beginning-search-forward
+bindkey -s '^o' 'code . -r\n'
 
 # Salesforce cli autocomplete
 eval
