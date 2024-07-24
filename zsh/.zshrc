@@ -18,7 +18,6 @@ setopt share_history          # share command history data
 
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/krg/.jfrog/jfrog_zsh_completion
 
 bindkey -v
 bindkey ^R history-incremental-search-backward
