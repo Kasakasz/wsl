@@ -4,6 +4,9 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "ibhagwan/fzf-lua", -- no need if you don't use listing metadata feature
     },
+    config = function()
+        require("sf").setup()
+    end,
     ft = { "apex" },
     cmd = { "SF" },
     opts = {
@@ -111,5 +114,13 @@ return {
             end,
             desc = "Cancel SF operation"
         },
+        {
+            "<leader>ss",
+            function()
+                require("sf").set_target_org();
+            end,
+            desc = "set local org"
+        },
+
     }
 }

@@ -16,8 +16,8 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data
 
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions
+source /usr/share/zsh/plugins/zsh-syntax-highlighting
 
 bindkey -v
 bindkey ^R history-incremental-search-backward
@@ -46,6 +46,6 @@ bindkey -s '^o' 'code . -r\n'
 
 # Salesforce cli autocomplete
 eval
-SF_AC_ZSH_SETUP_PATH=/home/krg/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
+SF_AC_ZSH_SETUP_PATH=/home/miszczu/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 
 eval "$(zoxide init zsh)"
