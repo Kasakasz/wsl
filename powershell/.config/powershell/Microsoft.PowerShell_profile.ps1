@@ -76,7 +76,6 @@ function findSfConfig {
     $path = $PWD.Path
 
     while($path -and (!Test-Path(Join-Path $path '.sf/config.json'))) {
-        Write-Host "something"
         $path = Split-Path $path -Parent
     }
     return Join-Path $path '.sf/config.json'
