@@ -19,7 +19,11 @@ config.font_size = 11
 --config.font_locator = 'ConfigDirsOnly'
 --config.font_dirs = { 'scoop\\apps\\VictorMono-NF-Mono\\current' }
 
-config.default_prog = { 'C:\\Program Files\\PowerShell\\7\\pwsh.exe' }
+config.default_prog = { "pwsh.exe" }
+
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 
 local act = wezterm.action
 config.keys = {

@@ -49,13 +49,14 @@ ENV SHELL /bin/zsh
 
 RUN sf autocomplete
 ENV DEBIAN_FRONTEND=dialog
+RUN echo "insecure" >> .curlrc
 
 COPY --chown=krg:krg ./sfAuthFiles/* /home/krg/sfAuthFiles/
 RUN chmod +x ./wsl/docker/restoreOrgs.sh \
-    && ./wsl/docker/restoreOrgs.sh
+    && ./wsl/docker/restoreOrgs.sh skipcache
 
-COPY --chown=krg:krg --chmod=600 ./.ssh/id_ed25519 /home/krg/.ssh/id_ed25519
-COPY --chown=krg:krg --chmod=644 ./.ssh/id_ed25519.pub /home/krg/.ssh/id_ed25519.pub
+COPY --chown=krg:krg --chmod=600 ./.ssh/id_rsa /home/krg/.ssh/id_rsa
+COPY --chown=krg:krg --chmod=644 ./.ssh/id_rsa.pub /home/krg/.ssh/id_rsa.pub
 COPY --chown=krg:krg --chmod=644 ./.ssh/known_hosts /home/krg/.ssh/known_hosts
 RUN mkdir /home/krg/workspace
 COPY --chown=krg:krg ./workspace/ /home/krg/workspace/
