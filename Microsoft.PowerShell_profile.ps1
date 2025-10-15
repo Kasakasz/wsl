@@ -15,7 +15,8 @@ function prompt {
     $orgAlias = ''
     $configFound = $false
     $directory = $PWD.Path
-
+    # Set the OSC 7 escape sequence for current directory
+    Write-Host -NoNewLine "$ESC]7;file://$($directory)$ESC\"  # Update the working directory for OSC 7
     #font color
     $resetColor = "${ESC}[0m"
     $redColor = "${ESC}[38;2;255;100;100m"
