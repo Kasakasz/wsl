@@ -48,4 +48,10 @@ bindkey -s '^o' 'code . -r\n'
 eval
 SF_AC_ZSH_SETUP_PATH=/home/miszczu/.cache/sf/autocomplete/zsh_setup && test -f $SF_AC_ZSH_SETUP_PATH && source $SF_AC_ZSH_SETUP_PATH; # sf autocomplete setup
 
+#nvm init
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/share/nvm/init-nvm.sh" ] && source /usr/share/nvm/init-nvm.sh
+
+# zoxide init
 eval "$(zoxide init zsh)"
+export XR_RUNTIME_JSON=/usr/share/openxr/1/openxr_monado.json
