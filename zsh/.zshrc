@@ -55,3 +55,9 @@ export NVM_DIR="$HOME/.nvm"
 # zoxide init
 eval "$(zoxide init zsh)"
 export XR_RUNTIME_JSON=/usr/share/openxr/1/openxr_monado.json
+
+# OpenClaw Completion
+source "/home/miszczu/.openclaw/completions/openclaw.zsh"
+
+# opencode
+export PATH=/home/miszczu/.opencode/bin:$PATH

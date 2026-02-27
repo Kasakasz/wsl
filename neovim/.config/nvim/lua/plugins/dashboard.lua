@@ -35,19 +35,23 @@ return {
                     icon_hl = "@variable",
                     desc = "Files",
                     group = "Label",
-                    action = "Telescope find_files",
+                    action = function() require("telescope.builtin").find_files() end,
                     key = "f",
                 },
                 {
                     desc = " Apps",
                     group = "DiagnosticHint",
-                    action = "Telescope app",
+                    action = function()
+                        local is_git = vim.fn.isdirectory(".git") == 1
+                        local picker = is_git and "git_files" or "find_files"
+                        require("telescope.builtin")[picker]()
+                    end,
                     key = "a",
                 },
                 {
                     desc = " dotfiles",
                     group = "Number",
-                    action = "Telescope dotfiles",
+                    action = function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end,
                     key = "d",
                 },
             },
