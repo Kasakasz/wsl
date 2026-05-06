@@ -1,0 +1,6 @@
+.ssh/
+.git-credentials
+*.git-credentials
+sfAuthFiles/
+.gitCredentials/
+.sfdx/

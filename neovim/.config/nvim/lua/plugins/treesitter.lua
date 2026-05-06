@@ -15,7 +15,6 @@ return {
                 "java",
                 "javascript",
                 "json",
-                "lua",
                 "markdown",
                 "rust",
                 "typescript",

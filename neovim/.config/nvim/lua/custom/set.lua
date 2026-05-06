@@ -1,5 +1,8 @@
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
+-- disabled netrw as per nvim-tree suggestion
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 vim.opt.mouse = ''
 vim.opt.hlsearch = false
@@ -21,6 +24,7 @@ vim.opt.signcolumn = 'yes'
 vim.opt.smartindent = true
 vim.opt.splitright = true
 vim.opt.tabstop = 4
+vim.opt.colorcolumn = "110"
 
 vim.opt.spelllang = 'en_us,en_gb,pl'
 vim.opt.spell = true

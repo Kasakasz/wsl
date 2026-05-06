@@ -51,7 +51,7 @@ return {
                 {
                     desc = " dotfiles",
                     group = "Number",
-                    action = function() require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") }) end,
+                    action = "lua require('telescope.builtin').find_files({prompt_title = '< neovim config >',cwd = vim.fn.stdpath('config'),hidden = true,})",
                     key = "d",
                 },
             },

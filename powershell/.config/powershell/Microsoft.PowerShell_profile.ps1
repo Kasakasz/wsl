@@ -9,6 +9,50 @@ Set-Alias tojson ConvertTo-Json
 
 New-Alias l ls
 
+function Find-SfProjectRoot {
+    param(
+        [string]$StartPath = $PWD.Path
+    )
+
+    $path = $StartPath
+    while ($path) {
+        if (Test-Path (Join-Path $path 'sfdx-project.json')) {
+            return $path
+        }
+
+        $parent = Split-Path $path -Parent
+        if (-not $parent -or $parent -eq $path) {
+            break
+        }
+
+        $path = $parent
+    }
+
+    return $null
+}
+
+function Get-SfTargetOrg {
+    param(
+        [string]$ProjectRoot
+    )
+
+    if (-not $ProjectRoot) {
+        return ''
+    }
+
+    $configPath = Join-Path $ProjectRoot '.sf/config.json'
+    if (-not (Test-Path $configPath)) {
+        return ''
+    }
+
+    try {
+        return (Get-Content $configPath -Raw | ConvertFrom-Json).'target-org'
+    }
+    catch {
+        return ''
+    }
+}
+
 $prompt = ""
 function Invoke-Starship-PreCommand {
     $current_location = $executionContext.SessionState.Path.CurrentLocation
@@ -26,9 +70,8 @@ function prompt {
     $principal = [Security.Principal.WindowsPrincipal] $identity
     $adminRole = [Security.Principal.WindowsBuiltInRole]::Administrator
     $branch = git branch --show-current
-    $orgAlias = ''
-    $configFound = $false
-    $directory = $PWD.Path
+    $projectRoot = Find-SfProjectRoot
+    $orgAlias = Get-SfTargetOrg -ProjectRoot $projectRoot
 
     #font color
     $resetColor = "${ESC}[0m"
@@ -51,34 +94,33 @@ function prompt {
     $bGray = "$ESC[48;2;169;169;169m"
     $bYellow = "$ESC[48;2;255;255;0m"
 
-    while(!$configFound) {
-        if ((Test-Path (Join-Path $directory '.sf/config.json'))) {
-            $configFound = $true
-            $orgAlias = Get-Content (Join-Path $directory '.sf/config.json') | ConvertFrom-Json | select -exp 'target-org'
-            break
-        }
-        
-        $directory = Split-Path $directory -Parent
-    }
-
     $prefix = if (Test-Path variable:/PSDebugContext) { '[DBG]: ' } else { '' }
     if ($principal.IsInRole($adminRole)) {
         $prefix = "[ADMIN]:$prefix"
     }
 
-    $body =  "PS " + $greenColor + $PWD.Path + " " + $resetColor + $bdblue + $redColor + $branch + $resetColor + " " + $bdGreen + $yellowColor + $orgAlias + $resetColor + " "
+    $sfBodyPart = $bdGreen + $yellowColor + $orgAlias + $resetColor + " "
+    $body =  "PS " + $greenColor + $PWD.Path + " " + $resetColor + $bdblue + $redColor + $branch + $resetColor + " "
+    if ($projectRoot -and $orgAlias -ne "") {
+        $body += $sfBodyPart
+    }
     $suffix = $(if ($NestedPromptLevel -ge 1) { '>>' }) + '> '
 	$time = $(Get-Date)
     "${prefix}${body}${time}${suffix}"
 }
 
 function findSfConfig {
-    $path = $PWD.Path
-
-    while($path -and (!Test-Path(Join-Path $path '.sf/config.json'))) {
-        $path = Split-Path $path -Parent
+    $projectRoot = Find-SfProjectRoot
+    if (-not $projectRoot) {
+        return $null
     }
-    return Join-Path $path '.sf/config.json'
+
+    $configPath = Join-Path $projectRoot '.sf/config.json'
+    if (Test-Path $configPath) {
+        return $configPath
+    }
+
+    return $null
 }
 
 

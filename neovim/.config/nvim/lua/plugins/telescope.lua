@@ -7,6 +7,7 @@ return {
             preview = true,
         },
     },
+	cmd = "Telescope",
     keys = {
         {
             "<leader>ff",
